@@ -9,14 +9,21 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #0E103D;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
+
+
+body::-webkit-scrollbar {
+    display: none;
+  }
 
 
 .top-container {
     color: #CCC1FF;
     background-color: #69306D;
     width: 100%;
-    min-width: 250px;
+    min-width: 300px;
     text-align: center;
 }
 
@@ -52,8 +59,36 @@ body {
     width: 100px;
     height: 50px;
     background-color: #CCC1FF;
-    border: 1px #CCC1FF solid;
+    box-sizing: border-box;
+    background-color: #CCC1FF;
+    border-right: 2px gray solid;
+    border-top: 3px #3C2055 solid;
+    border-bottom: 3px #3C2055 solid;
     border-radius: 10px;
+}
+
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+
+
+.conversion-direction-button {
+    box-sizing: border-box;
+    background-color: #CCC1FF;
+    border-top: 3px #3C2055 solid;
+    border-right: 3px #3C2055 solid;
+}
+
+
+.theme {
+    box-sizing: border-box;
+    background-color: #CCC1FF;
+    border-top: 3px #3C2055 solid;
+    border-left: 3px #3C2055 solid;
 }
 
 
@@ -67,23 +102,41 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #0E103D;
+    color: #CCC1FF;
 }
 
 
 .length-container,
 .volume-container,
 .mass-container {
+    display: flex;
+    flex-direction: column;
     margin: 15px 15px;
     width: 75%;
     padding: 0 50px;
+    gap: 0;
     background-color: #3C2055;
     border-radius: 10px;
+    align-items: center;
     text-align: center;
 }
 
 
-.mid-container-title {
+.length-title,
+.volume-title,
+.mass-title {
+    font-size: 15px;
     color: #CCC1FF;
+}
+
+
+.card-conversion-text {
+    display: inline;
+    width: 100%;
+    padding: 0 0 5px;
+    margin: 0;
+    color: #CCC1FF;
+    text-align: center;
 }
 
 
