@@ -1,13 +1,19 @@
 const TITLE = document.querySelector(".title");
 const INPUT = document.querySelector(".input-area");
 const CONVERT = document.querySelector(".input-btn");
-const DIRECTION = document.querySelector(".conversion-direction-button")
+const DIRECTION = document.querySelector(".conversion-direction-button");
 const LENGTHTITLE = document.querySelector(".length-title");
 const VOLUMETITLE = document.querySelector(".volume-title");
 const MASSTITLE = document.querySelector(".mass-title");
+const MIDCONTAINER = document.querySelector(".mid-container");
+const BOTCONTAINER = document.querySelector(".bot-container");
 const LENGTHCARD = document.querySelector(".length-container");
 const VOLUMECARD = document.querySelector(".volume-container");
 const MASSCARD = document.querySelector(".mass-container");
+const THEME = document.querySelector(".theme");
+const LINESREFLECT = document.querySelector(".lines-reflect");
+const GITHUB = document.querySelector(".github-logo");
+
 
 
 let enteredAmount = "";
@@ -15,6 +21,10 @@ let convertedUnits = [];
 let refreshedCards = [LENGTHCARD, VOLUMECARD, MASSCARD];
 let newValueText = [];
 
+
+THEME.addEventListener("click", function() {
+    changeTheme();
+});
 
 
 DIRECTION.addEventListener("click", function() {
@@ -25,7 +35,7 @@ DIRECTION.addEventListener("click", function() {
         changeConversionToImperial();
         DIRECTION.value = "Imperial";
     }
-    clearInput()
+    clearInput();
 });
 
 CONVERT.addEventListener("click", function() {
@@ -34,15 +44,15 @@ CONVERT.addEventListener("click", function() {
         renderAnswers();
     }
     clearInput();
-})
+});
 
 
 
 function renderAnswers() {
-    deleteNewValues(refreshedCards)
+    deleteNewValues(refreshedCards);
     createNewValues();
-    getConversions(DIRECTION.value)
-    writeNewValues(newValueText)
+    getConversions(DIRECTION.value);
+    writeNewValues(newValueText);
 };
 
 function getConversions(direct) {
@@ -50,12 +60,12 @@ function getConversions(direct) {
         let toMetricLength = (enteredAmount * 0.3048).toFixed(2);
         let toMetricVolume = (enteredAmount * 4.546).toFixed(2);
         let toMetricMass = (enteredAmount * 0.45359237).toFixed(2);
-        convertedUnits = [toMetricLength, toMetricVolume, toMetricMass]
+        convertedUnits = [toMetricLength, toMetricVolume, toMetricMass];
     }else {
         let toImperialLength = (enteredAmount / 0.3048).toFixed(2);
         let toImperialVolume = (enteredAmount / 4.546).toFixed(2);
         let toImperialMass = (enteredAmount / 0.45359237).toFixed(2);
-        convertedUnits = [toImperialLength, toImperialVolume, toImperialMass]
+        convertedUnits = [toImperialLength, toImperialVolume, toImperialMass];
     }
 };
 
@@ -91,7 +101,7 @@ function writeNewValues(newValue) {
 function deleteNewValues(cards) {
     for (let i = 0; i < cards.length; i++) {
         if (cards[i].lastChild != cards[i].firstChild) {
-            cards[i].removeChild(cards[i].lastChild)
+            cards[i].removeChild(cards[i].lastChild);
         }
     };
 };
@@ -106,17 +116,38 @@ function clearInput() {
 
 function changeConversionToMetric() {
     TITLE.textContent = "Imperial → Metric";
-    DIRECTION.textContent = "→ Imperial"
+    DIRECTION.textContent = "→ Imperial";
     LENGTHTITLE.textContent = "Length (Feet → Meters)";
     VOLUMETITLE.textContent = "Volume (Gallons → Liters)";
-    MASSTITLE.textContent = "Mass (Pounds → Kilograms)"
+    MASSTITLE.textContent = "Mass (Pounds → Kilograms)";
 };
 
 
 function changeConversionToImperial() {
     TITLE.textContent = "Metric → Imperial";
-    DIRECTION.textContent = "→ Metric"
+    DIRECTION.textContent = "→ Metric";
     LENGTHTITLE.textContent = "Length (Meters → Feet)";
     VOLUMETITLE.textContent = "Volume (Liters → Gallons)";
-    MASSTITLE.textContent = "Mass (Kilograms → Pounds)"
+    MASSTITLE.textContent = "Mass (Kilograms → Pounds)";
+};
+
+
+function changeTheme() {
+    if (THEME.value === "default") {
+        document.body.style.backgroundColor = "#CCC1FF";
+        MIDCONTAINER.style.backgroundColor = "#CCC1FF";
+        BOTCONTAINER.style.backgroundColor = "#CCC1FF";
+        LINESREFLECT.style.color = "#0E103D";
+        GITHUB.setAttribute("src", "images/GitHub-Mark-32px.png")
+        THEME.textContent = "🌙";
+        THEME.value = "light";
+    }else {
+        document.body.style.backgroundColor = "#0E103D";
+        MIDCONTAINER.style.backgroundColor = "#0E103D"
+        BOTCONTAINER.style.backgroundColor = "#0E103D"
+        LINESREFLECT.style.color = "#CCC1FF";
+        GITHUB.setAttribute("src", "images/GitHub-Mark-Light-32px.png")
+        THEME.textContent = "☼";
+        THEME.value = "default";
+    }
 };
