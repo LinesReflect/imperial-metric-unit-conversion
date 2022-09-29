@@ -52,9 +52,9 @@ function getConversions(direct) {
         let toMetricMass = (enteredAmount * 0.45359237).toFixed(2);
         convertedUnits = [toMetricLength, toMetricVolume, toMetricMass]
     }else {
-        let toImperialLength = (enteredAmount * 0.3048).toFixed(2);
-        let toImperialVolume = (enteredAmount * 4.546).toFixed(2);
-        let toImperialMass = (enteredAmount * 0.45359237).toFixed(2);
+        let toImperialLength = (enteredAmount / 0.3048).toFixed(2);
+        let toImperialVolume = (enteredAmount / 4.546).toFixed(2);
+        let toImperialMass = (enteredAmount / 0.45359237).toFixed(2);
         convertedUnits = [toImperialLength, toImperialVolume, toImperialMass]
     }
 };
